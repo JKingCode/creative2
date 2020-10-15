@@ -1,0 +1,48 @@
+/*styles.css*/
+
+header{
+  text-align: center;
+  background-color: gray;
+  margin: 0;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+footer{
+  text-align: center;
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+footer a{
+  font-size: 20px;
+}
+
+.today h2{
+  text-align: center;
+}
+
+.holiContent{
+  border: solid;
+}
+
+.name{
+  border-bottom-style: solid;
+  padding: 5px;
+}
+
+.location{
+  padding: 5px;
+}
+
+.description{
+  padding: 5px;
+}
