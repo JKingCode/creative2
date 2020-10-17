@@ -23,25 +23,21 @@
   justify-content: center;
 }
 
-.user-input {
-
-}
-
-form {
+#date-input {
   display: flex;
   flex-direction: column;
+}
+
+.date-select {
+  display:flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 form label {
   text-align: center;
   font-size: 20px;
   font-family: sans-serif;
-}
-
-#weatherInput {
-  text-align: center;
 }
 
 .past-present-future {

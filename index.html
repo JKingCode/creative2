@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js%22%3E"></script>
 </head>
 
-<body>
+<body onload="calculateDaysHelper(31)">
   <div class="page">
     <div class="header">
       <div class="header-text">
@@ -17,13 +17,55 @@
       </div>
     </div>
 
-    <div class="user-input">
-      <form>
-        <label>Enter the day you want to know the holiday for</label>
-        <input id="dateInput" type="date"></input>
-        <input id="calendarSubmit" type="submit" value="Submit"></input>
-      </form>
-    </div>
+
+    <form id="date-input">
+      <label>Enter the day you want to know the holiday for</label>
+      <div class="date-select">
+        <select id="month-input" onchange="calculateDays(this)">
+          <option value="0131" selected="selected">January</option>
+          <option value="0228">February</option>
+          <option value="0331">March</option>
+          <option value="0430">April</option>
+          <option value="0531">May</option>
+          <option value="0630">June</option>
+          <option value="0731">July</option>
+          <option value="0831">August</option>
+          <option value="0930">September</option>
+          <option value="1031">October</option>
+          <option value="1130">November</option>
+          <option value="1231">December</option>
+        </select>
+        <select id="day-input">
+        </select>
+        <select id="year-input">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020" selected="selected">2020</option>
+        </select>
+      </div>
+      <br />
+      <input id="calendarSubmit" type="submit" value="Submit"></input>
+    </form>
+
+    <hr />
 
     <div class="past-present-future">
 

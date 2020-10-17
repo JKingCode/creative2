@@ -1,22 +1,39 @@
 /*script.js*/
 
+function calculateDaysHelper(days) {
+  var dayOptions = "";
+
+  for(var i = 1; i <= days; i++) {
+    let dayString = "";
+    if (i < 10) {
+      dayString = "0" + i;
+    }
+    else { dayString = i; }
+
+    dayOptions += "<option value=" + dayString +">" + dayString + "</option>";
+  }
+
+  document.getElementById("day-input").innerHTML = dayOptions;
+}
+
+function calculateDays(monthDay) {
+  var days = monthDay.options[monthDay.selectedIndex].value;
+  days = days.slice(-2);
+
+  calculateDaysHelper(days);
+}
+
 document.getElementById("calendarSubmit").addEventListener("click", function(event) {
     event.preventDefault();
-    const value = document.getElementById("dateInput").value;
-    if (value === "")
-        return;
     const urlBase = "https://calendarific.com/api/v2/holidays?&api_key=31f1c7d4fed6303fc7daf30b6256b319bba4bc76&country=US";
-    var year = "";
-    var month = "";
-    var day = "";
-    for(var i = 0; i < 4; i++){
-      year += value.charAt(i);
-    }
-    month += value.charAt(5);
-    month += value.charAt(6);
+    var year = document.getElementById("year-input")
+      .options[document.getElementById("year-input").selectedIndex].value;
+    var month = document.getElementById("month-input")
+      .options[document.getElementById("month-input").selectedIndex].value
+      .slice(0,2);
+    var day = document.getElementById("day-input")
+      .options[document.getElementById("day-input").selectedIndex].value;
 
-    day  += value.charAt(8);
-    day  += value.charAt(9);
 
     const urlFull = urlBase + "&year=" + year + "&month=" + month + "&day=" + day;
 
@@ -37,7 +54,7 @@ document.getElementById("calendarSubmit").addEventListener("click", function(eve
           }
           results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
           results += '<div class="description"><p>' + "Description of holiday: " + json.response.holidays[i].description + '<p></div>';
-          results += '</div>';
+          results += '</div> <br/>';
         }
         results += '</div>';
         document.getElementById("currentHoliday").innerHTML = results;
