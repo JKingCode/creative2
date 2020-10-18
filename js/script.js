@@ -141,20 +141,25 @@ document.getElementById("calendarSubmit").addEventListener("click", function(eve
       }).then(function(json) {
         console.log(json);
         let results = "";
-        results += '<div class="date-header"><h2>Holidays celebrated on ' + json.response.holidays[0].date.datetime.month + '/' + json.response.holidays[0].date.datetime.day + '/' + json.response.holidays[0].date.datetime.year +"</h2>";
-        results += '<br>';
-        for(var i = 0; i < json.response.holidays.length; i++){
-          results += '<div class="holiContent">';
-          results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
-          let whereCelebrate = json.response.holidays[i].locations;
-          if(whereCelebrate == "All"){
-            whereCelebrate = "Everywhere";
-          }
-          results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
-          results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
-          results += '</div> <br/>';
+        if(json.response.holidays.length == 0){
+          results = "<h2>No holidays found for " + month + "/" + day + "/" + year;
         }
-        results += '</div>';
+        else {
+          results += '<div class="date-header"><h2>Holidays celebrated on ' + json.response.holidays[0].date.datetime.month + '/' + json.response.holidays[0].date.datetime.day + '/' + json.response.holidays[0].date.datetime.year +"</h2>";
+          results += '<br>';
+          for(var i = 0; i < json.response.holidays.length; i++){
+            results += '<div class="holiContent">';
+            results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
+            let whereCelebrate = json.response.holidays[i].locations;
+            if(whereCelebrate == "All"){
+              whereCelebrate = "Everywhere";
+            }
+            results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
+            results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
+            results += '</div> <br/>';
+          }
+          results += '</div>';
+        }
         document.getElementById("searched-date").innerHTML = results;
       });
 
