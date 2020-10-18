@@ -49,6 +49,8 @@ function loadPastPresentFuture() {
       let month = yesterday.getMonth() + 1;
       results += '<h3>' + month + '/' + yesterday.getDate() + '/' + yesterday.getFullYear() +"</h3>";
       results += '<br>';
+
+      if(json.response.holidays.length > 0){
       for(var i = 0; i < json.response.holidays.length; i++){
         results += '<div class="holiContent">';
         results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
@@ -60,6 +62,10 @@ function loadPastPresentFuture() {
         results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
         results += '</div> <br/>';
       }
+    }
+    else {
+        results += '<h2>No Holidays Found</h2>';
+    }
       results += '</div>';
       document.getElementById("yesterday").innerHTML = results;
     });
@@ -76,6 +82,8 @@ function loadPastPresentFuture() {
         let month = today.getMonth() + 1;
         results += '<h3>' + month + '/' + today.getDate() + '/' + today.getFullYear() +"</h3>";
         results += '<br>';
+
+        if(json.response.holidays.length > 0){
         for(var i = 0; i < json.response.holidays.length; i++){
           results += '<div class="holiContent">';
           results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
@@ -87,6 +95,10 @@ function loadPastPresentFuture() {
           results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
           results += '</div> <br/>';
         }
+      }
+      else {
+          results += '<h2>No Holidays Found</h2>';
+      }
         results += '</div>';
         document.getElementById("today").innerHTML = results;
       });
@@ -103,16 +115,22 @@ function loadPastPresentFuture() {
           let month = tomorrow.getMonth() + 1;
           results += '<h3>' + month + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear() +"</h3>";
           results += '<br>';
-          for(var i = 0; i < json.response.holidays.length; i++){
-            results += '<div class="holiContent">';
-            results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
-            let whereCelebrate = json.response.holidays[i].locations;
-            if(whereCelebrate == "All"){
-              whereCelebrate = "Everywhere";
+
+          if(json.response.holidays.length > 0){
+            for(var i = 0; i < json.response.holidays.length; i++){
+              results += '<div class="holiContent">';
+              results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
+              let whereCelebrate = json.response.holidays[i].locations;
+              if(whereCelebrate == "All"){
+                whereCelebrate = "Everywhere";
+              }
+              results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
+              results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
+              results += '</div> <br/>';
             }
-            results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
-            results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
-            results += '</div> <br/>';
+          }
+          else {
+              results += '<h2>No Holidays Found</h2>';
           }
           results += '</div>';
           document.getElementById("tomorrow").innerHTML = results;
