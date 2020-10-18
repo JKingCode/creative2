@@ -125,6 +125,9 @@ form label {
   align-items: center;
   justify-content: center;
   bottom: 0px;
+  margin-bottom: 0px;
+  overflow: hidden;
+  margin-top: auto;
 }
 
 .footer {
@@ -132,6 +135,7 @@ form label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0px;
 }
 
 .footer a { font-size: 16px; }
@@ -145,6 +149,11 @@ h2 { margin-top: 25px; }
 
 select { font-size: 1.25em; }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {

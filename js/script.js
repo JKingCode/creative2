@@ -27,11 +27,14 @@ function loadPastPresentFuture() {
   var today = new Date();
   var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
   var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  yesterdayMonth = yesterday.getMonth() + 1;
+  todayMonth = today.getMonth() + 1;
+  tomorrowMonth = tomorrow.getMonth() + 1;
 
   const urlBase = "https://calendarific.com/api/v2/holidays?&api_key=31f1c7d4fed6303fc7daf30b6256b319bba4bc76&country=US";
-  const urlYesterday = urlBase + "&year=" + yesterday.getFullYear() + "&month=" + yesterday.getMonth() + "&day=" + yesterday.getDate();
-  const urlToday = urlBase + "&year=" + today.getFullYear() + "&month=" + today.getMonth() + "&day=" + today.getDate();
-  const urlTomorrow = urlBase + "&year=" + tomorrow.getFullYear() + "&month=" + tomorrow.getMonth() + "&day=" + tomorrow.getDate();
+  const urlYesterday = urlBase + "&year=" + yesterday.getFullYear() + "&month=" + yesterdayMonth + "&day=" + yesterday.getDate();
+  const urlToday = urlBase + "&year=" + today.getFullYear() + "&month=" + todayMonth + "&day=" + today.getDate();
+  const urlTomorrow = urlBase + "&year=" + tomorrow.getFullYear() + "&month=" + tomorrowMonth + "&day=" + tomorrow.getDate();
 
 
   fetch(urlYesterday)
