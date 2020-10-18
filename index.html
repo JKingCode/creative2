@@ -9,14 +9,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js%22%3E"></script>
 </head>
 
-<body onload="calculateDaysHelper(31)">
-  <div class="page">
-    <div class="header">
-      <div class="header-text">
-        <h2>Holiday Daily<h2>
-      </div>
+<body onload="calculateDaysHelper(31);loadPastPresentFuture()">
+  <div class="header">
+    <div class="header-text">
+      <h2>𝕳𝖔𝖑𝖎𝖉𝖆𝖞 𝕯𝖆𝖎𝖑𝖞<h2>
     </div>
+  </div>
 
+  <div class="page">
 
     <form id="date-input">
       <label>Enter the day you want to know the holiday for</label>
@@ -65,36 +65,40 @@
       <input id="calendarSubmit" type="submit" value="Submit"></input>
     </form>
 
-    <hr />
+    <br>
+
+    <div class="searched-date-container">
+      <div id="searched-date">
+      </div>
+    </div>
 
     <div class="past-present-future">
 
-      <div class="left">
-        <div id="previousHolidays">
+      <div class="previous splash">
+        <div id="yesterday">
         </div>
       </div>
 
-      <div class="center">
-        <div id="currentHoliday">
+      <div class="current splash">
+        <div id="today">
         </div>
       </div>
 
-      <div class="right">
-        <div id="futureHolidays">
+      <div class="future splash">
+        <div id="tomorrow">
         </div>
       </div>
 
     </div>
 
-
     <script text="type/javascript" src="/js/script.js"></script>
+  </div>
 
-    <div class="footer-container">
-      <div class="footer">
-        <a href="https://github.com/JKingCode/creative2.git">Visit our Github Page!</a>
-        <p>Josh King and Zach Payne</p>
-        <p>All Rights Not Reserved</p>
-      </div>
+  <div class="footer-container">
+    <div class="footer">
+      <a href="https://github.com/JKingCode/creative2.git">Visit our Github Page!</a>
+      <p>Josh King and Zach Payne</p>
+      <p>All Rights Not Reserved</p>
     </div>
   </div>
 </body>

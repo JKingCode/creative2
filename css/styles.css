@@ -10,10 +10,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  background-image: url("/images/smallcalendar.png");
   margin: 0;
   width: 100%;
+  background-size: cover;
   height: 100px;
+  background-position: center;
+}
+
+.header-text {
+  background-color : rgba(255,255,255, .7);
+  box-shadow: 0px 0px 15px 15px rgba(255,255,255, .7);
+}
+
+.header-text h2 {
+  font-size: 40px;
 }
 
 .page {
@@ -21,11 +32,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 #date-input {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calendarSubmit {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  font-size: 16px;
+  margin-bottom: 30px;
 }
 
 .date-select {
@@ -36,23 +58,72 @@
 
 form label {
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-family: sans-serif;
 }
 
+.date-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-header h2, h3 {
+  text-align: center;
+}
+
+.holiContent{
+  border: solid;
+  border-color: #d9cb86;
+  background-color: #f3ecc9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name{
+  border-bottom-style: solid;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name h4 { text-align: center; }
+
+.location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.location p { text-align: center; }
+
+.description{
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.description p { text-align: center; }
+
 .past-present-future {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
+
+.previous { order: 2; }
+.current { order: 1; }
+.future { order: 3; }
 
 .footer-container{
   display: flex;
-  background-color: lightgray;
+  background-color: #f3ecc9;
   height: 100px;
   width: 100%;
   align-items: center;
   justify-content: center;
-  position: fixed;
   bottom: 0px;
 }
 
@@ -68,25 +139,37 @@ form label {
 .footer a,p {
   padding: 0px;
   margin: 0px;
- }
-
-.today h2{
-  text-align: center;
 }
 
-.holiContent{
-  border: solid;
-}
+h2 { margin-top: 25px; }
 
-.name{
-  border-bottom-style: solid;
-  padding: 5px;
-}
+select { font-size: 1.25em; }
 
-.location{
-  padding: 5px;
-}
 
-.description{
-  padding: 5px;
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+
+  .header {
+    height: 230px;
+    background-position:top,center;
+    background-image: url("/images/calendar.png");
+  }
+
+  .header-text h2 {
+    font-size: 60px;
+  }
+
+  .past-present-future { flex-direction: row; }
+  .previous { order: 1; }
+  .current { order: 2; }
+  .future { order: 3; }
+  .splash {
+    width: 33%;
+    min-width: 33%;
+    padding: 20px;
+  }
+
+  form label {
+    font-size: 30px;
+  }
 }

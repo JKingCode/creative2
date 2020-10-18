@@ -23,6 +23,97 @@ function calculateDays(monthDay) {
   calculateDaysHelper(days);
 }
 
+function loadPastPresentFuture() {
+  var today = new Date();
+  var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+  var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+
+  const urlBase = "https://calendarific.com/api/v2/holidays?&api_key=31f1c7d4fed6303fc7daf30b6256b319bba4bc76&country=US";
+  const urlYesterday = urlBase + "&year=" + yesterday.getFullYear() + "&month=" + yesterday.getMonth() + "&day=" + yesterday.getDate();
+  const urlToday = urlBase + "&year=" + today.getFullYear() + "&month=" + today.getMonth() + "&day=" + today.getDate();
+  const urlTomorrow = urlBase + "&year=" + tomorrow.getFullYear() + "&month=" + tomorrow.getMonth() + "&day=" + tomorrow.getDate();
+
+
+  fetch(urlYesterday)
+    .then(function(response) {
+        //console.log("does this mean errors");
+        return response.json();
+    }).then(function(json) {
+      console.log(json);
+      var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+      let results = "";
+      results += '<div class="date-header"><h2>Yesterday\'s Holidays</h2>';
+      results += '<h3>' + yesterday.getMonth() + '/' + yesterday.getDate() + '/' + yesterday.getFullYear() +"</h3>";
+      results += '<br>';
+      for(var i = 0; i < json.response.holidays.length; i++){
+        results += '<div class="holiContent">';
+        results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
+        let whereCelebrate = json.response.holidays[i].locations;
+        if(whereCelebrate == "All"){
+          whereCelebrate = "Everywhere";
+        }
+        results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
+        results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
+        results += '</div> <br/>';
+      }
+      results += '</div>';
+      document.getElementById("yesterday").innerHTML = results;
+    });
+
+    fetch(urlToday)
+      .then(function(response) {
+          //console.log("does this mean errors");
+          return response.json();
+      }).then(function(json) {
+        console.log(json);
+        var today = new Date();
+        let results = "";
+        results += '<div class="date-header"><h2>Today\'s Holidays</h2>';
+        results += '<h3>' + today.getMonth() + '/' + today.getDate() + '/' + today.getFullYear() +"</h3>";
+        results += '<br>';
+        for(var i = 0; i < json.response.holidays.length; i++){
+          results += '<div class="holiContent">';
+          results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
+          let whereCelebrate = json.response.holidays[i].locations;
+          if(whereCelebrate == "All"){
+            whereCelebrate = "Everywhere";
+          }
+          results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
+          results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
+          results += '</div> <br/>';
+        }
+        results += '</div>';
+        document.getElementById("today").innerHTML = results;
+      });
+
+      fetch(urlTomorrow)
+        .then(function(response) {
+            //console.log("does this mean errors");
+            return response.json();
+        }).then(function(json) {
+          console.log(json);
+          var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+          let results = "";
+          results += '<div class="date-header"><h2>Tomorrow\'s Holidays</h2>';
+          results += '<h3>' + tomorrow.getMonth() + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear() +"</h3>";
+          results += '<br>';
+          for(var i = 0; i < json.response.holidays.length; i++){
+            results += '<div class="holiContent">';
+            results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
+            let whereCelebrate = json.response.holidays[i].locations;
+            if(whereCelebrate == "All"){
+              whereCelebrate = "Everywhere";
+            }
+            results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
+            results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
+            results += '</div> <br/>';
+          }
+          results += '</div>';
+          document.getElementById("tomorrow").innerHTML = results;
+        });
+
+}
+
 document.getElementById("calendarSubmit").addEventListener("click", function(event) {
     event.preventDefault();
     const urlBase = "https://calendarific.com/api/v2/holidays?&api_key=31f1c7d4fed6303fc7daf30b6256b319bba4bc76&country=US";
@@ -44,7 +135,8 @@ document.getElementById("calendarSubmit").addEventListener("click", function(eve
       }).then(function(json) {
         console.log(json);
         let results = "";
-        results += '<div class="today"><h2>Holidays celebrated on ' + json.response.holidays[0].date.datetime.month + '/' + json.response.holidays[0].date.datetime.day + '/' + json.response.holidays[0].date.datetime.year +"</h2>";
+        results += '<div class="date-header"><h2>Holidays celebrated on ' + json.response.holidays[0].date.datetime.month + '/' + json.response.holidays[0].date.datetime.day + '/' + json.response.holidays[0].date.datetime.year +"</h2>";
+        results += '<br>';
         for(var i = 0; i < json.response.holidays.length; i++){
           results += '<div class="holiContent">';
           results += '<div class="name"><h4>' + json.response.holidays[i].name + '<h4></div>';
@@ -53,11 +145,11 @@ document.getElementById("calendarSubmit").addEventListener("click", function(eve
             whereCelebrate = "Everywhere";
           }
           results += '<div class="location"><p>' + "Locations that celebrate this holiday: " + json.response.holidays[i].locations + '<p></div>';
-          results += '<div class="description"><p>' + "Description of holiday: " + json.response.holidays[i].description + '<p></div>';
+          results += '<div class="description"><p>' + json.response.holidays[i].description + '<p></div>';
           results += '</div> <br/>';
         }
         results += '</div>';
-        document.getElementById("currentHoliday").innerHTML = results;
+        document.getElementById("searched-date").innerHTML = results;
       });
 
 });
