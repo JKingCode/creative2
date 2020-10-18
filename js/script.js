@@ -141,6 +141,7 @@ document.getElementById("calendarSubmit").addEventListener("click", function(eve
       }).then(function(json) {
         console.log(json);
         let results = "";
+        if(json.response.holidays.length == 0){return;}
         results += '<div class="date-header"><h2>Holidays celebrated on ' + json.response.holidays[0].date.datetime.month + '/' + json.response.holidays[0].date.datetime.day + '/' + json.response.holidays[0].date.datetime.year +"</h2>";
         results += '<br>';
         for(var i = 0; i < json.response.holidays.length; i++){
