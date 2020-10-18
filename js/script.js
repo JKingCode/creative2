@@ -43,7 +43,8 @@ function loadPastPresentFuture() {
       var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
       let results = "";
       results += '<div class="date-header"><h2>Yesterday\'s Holidays</h2>';
-      results += '<h3>' + yesterday.getMonth() + '/' + yesterday.getDate() + '/' + yesterday.getFullYear() +"</h3>";
+      let month = yesterday.getMonth() + 1;
+      results += '<h3>' + month + '/' + yesterday.getDate() + '/' + yesterday.getFullYear() +"</h3>";
       results += '<br>';
       for(var i = 0; i < json.response.holidays.length; i++){
         results += '<div class="holiContent">';
@@ -69,7 +70,8 @@ function loadPastPresentFuture() {
         var today = new Date();
         let results = "";
         results += '<div class="date-header"><h2>Today\'s Holidays</h2>';
-        results += '<h3>' + today.getMonth() + '/' + today.getDate() + '/' + today.getFullYear() +"</h3>";
+        let month = today.getMonth() + 1;
+        results += '<h3>' + month + '/' + today.getDate() + '/' + today.getFullYear() +"</h3>";
         results += '<br>';
         for(var i = 0; i < json.response.holidays.length; i++){
           results += '<div class="holiContent">';
@@ -95,7 +97,8 @@ function loadPastPresentFuture() {
           var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
           let results = "";
           results += '<div class="date-header"><h2>Tomorrow\'s Holidays</h2>';
-          results += '<h3>' + tomorrow.getMonth() + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear() +"</h3>";
+          let month = tomorrow.getMonth();
+          results += '<h3>' + month + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear() +"</h3>";
           results += '<br>';
           for(var i = 0; i < json.response.holidays.length; i++){
             results += '<div class="holiContent">';
