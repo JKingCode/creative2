@@ -97,7 +97,7 @@ function loadPastPresentFuture() {
           var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
           let results = "";
           results += '<div class="date-header"><h2>Tomorrow\'s Holidays</h2>';
-          let month = tomorrow.getMonth();
+          let month = tomorrow.getMonth() + 1;
           results += '<h3>' + month + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear() +"</h3>";
           results += '<br>';
           for(var i = 0; i < json.response.holidays.length; i++){
